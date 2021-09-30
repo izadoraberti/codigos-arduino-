@@ -1,0 +1,6 @@
+
+http://arduinoccbr.blogspot.com.br/2013/06/ponte-h-com-transistores.html
+
+http://labdegaragem.com/profiles/blogs/tutorial-acionamento-de-motor-dc-com-transistor-tip122
+
+https://arduinolivre.wordpress.com/2013/03/13/transistor-motor-dc-arduino-parte-2/

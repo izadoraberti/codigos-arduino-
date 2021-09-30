@@ -1,0 +1,32 @@
+
+
+int ledDelay = 5000;
+int vermelhoPin = 10;
+int amareloPin = 9;
+int verdePin = 8;
+void setup() {
+ pinMode(vermelhoPin, OUTPUT);
+ pinMode(amareloPin, OUTPUT);
+ pinMode(verde, OUTPUT);
+}
+void loop() {
+
+ // Liga o led vermelho
+ digitalWrite(redPin, HIGH);
+ delay(ledDelay); // espera 5 seg.
+
+ digitalWrite(amareloPin, HIGH); // Liga o led amarelo
+ delay(2000); // espera 2 seg.
+
+ digitalWrite(verdePin, HIGH); // Liga o led verde
+ digitalWrite(vermelhoPin, LOW); // desliga o led vermelho
+ digitalWrite(amareloPin, LOW); // desliga o led amarelo
+ delay(ledDelay); // espera o delay
+
+ digitalWrite(amareloPin, HIGH); // Liga o led amarelo
+ digitalWrite(verdePin, LOW); // desliga o led verde
+ delay(2000); // espera 2 seg
+
+ digitalWrite(amareloPin, LOW); // desliga o led amarelo
+ // repete o ciclo
+}

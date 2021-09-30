@@ -1,0 +1,71 @@
+
+
+
+int led = 13;
+int cont = 0;
+
+void setup() {
+ pinMode(led, OUTPUT);
+}
+
+
+
+void loop() {
+ Reset();
+ baixoBlink();
+ Reset();
+ MedioBlink();
+ Reset();
+ rapidoBlink();
+}
+
+
+
+
+Void baixoBlink()
+{
+ while(cont < 5)
+ {
+ digitalWrite(led, HIGH);
+ delay(1000);
+ digitalWrite(led, LOW);
+ delay(1000);
+ cont++;
+ }
+
+
+
+
+}
+void MedioBlink ()
+{
+ while(cont < 10)
+ {
+ digitalWrite(led, HIGH);
+ delay(500);
+ digitalWrite(led, LOW);
+ delay(500);
+ cont++;
+ }
+}
+
+
+
+void rapidoBlink()
+{
+ while(cont < 50)
+ {
+ digitalWrite(led, HIGH);
+ delay(100);
+ digitalWrite(led, LOW);
+ delay(100);
+ cont++;
+ }
+}
+
+
+
+void Reset()
+{
+ cont = 0;
+}

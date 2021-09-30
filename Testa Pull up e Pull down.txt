@@ -1,0 +1,14 @@
+
+
+int switchPin = 2; // Switch conectado digital pin 2
+void setup() // sketch starts
+{
+ Serial.begin(9600); // setup Serial a 9600 bps
+ pinMode(switchPin, INPUT); // seta o pino digital como entrada
+}
+void loop()
+{
+ Serial.print(Leitura do pino de entrada: ");
+ Serial.println(digitalRead(switchPin));
+ delay(100);
+}

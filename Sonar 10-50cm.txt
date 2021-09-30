@@ -1,0 +1,50 @@
+
+
+
+const int echoPin = 11; // Pino para receber o eco do pulso
+const int trigPin = 12; // Pino para enviar o pulso do trigger
+float distancia = 0;
+int ledPin1 = 6;
+int ledPin2 = 2;
+int ledPin3 = 3;
+int ledPin4 = 4;
+int ledPin5 = 5;
+
+void setup(){
+ Serial.begin(9600); //conexão usb, não utlize os pinos digitais 0 e 1 qndo conectado pela usb
+ pinMode(echoPin, INPUT); // define eco como entrada
+ pinMode(trigPin, OUTPUT); //define trigger como saída
+ pinMode(ledPin1,OUTPUT);
+ pinMode(ledPin2,OUTPUT);
+ pinMode(ledPin3,OUTPUT);
+ pinMode(ledPin4,OUTPUT);
+ pinMode(ledPin5,OUTPUT);
+}
+void loop(){ //rotina
+ 
+ digitalWrite(trigPin, LOW); // Seta trigger como baixo(0) por 2uS
+ delayMicroseconds(2);
+ digitalWrite(trigPin, HIGH); // coloca trigger em estado alto
+ delayMicroseconds(10); // por 10uS, pode uasr tbm delay (1) que equivale a 10uS
+ digitalWrite(trigPin, LOW); // coloca em estado baixo
+ distancia = pulseIn(echoPin, HIGH); //deixa eco em alto e retorna o tempo em milissegundos
+ distancia = distancia/58; // Calcula a distância do pelo tempo do pulso
+ Serial.println(distancia);
+
+ if (distancia>10)
+  digitalWrite(ledPin1,HIGH);
+ else digitalWrite(ledPin1,LOW);
+ if (distancia>20)
+  digitalWrite(ledPin2,HIGH);
+ else digitalWrite(ledPin2,LOW);
+ if (distancia>30)
+  digitalWrite(ledPin3,HIGH);
+ else digitalWrite(ledPin3,LOW);
+ if (distancia>40)
+  digitalWrite(ledPin4,HIGH);
+ else digitalWrite(ledPin4,LOW);
+ if (distancia>50)
+  digitalWrite(ledPin5,HIGH);
+ else digitalWrite(ledPin5,LOW);
+ delay(500); //aguarda 50mS e repete a rotina
+}

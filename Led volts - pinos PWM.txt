@@ -1,0 +1,18 @@
+
+
+
+
+void setup(){
+pinMode(3, OUTPUT);//define a porta digital 3 como saída
+pinMode(5, OUTPUT);//define a porta digital 5 como saída
+pinMode(6, OUTPUT);//define a porta digital 6 como saída
+pinMode(9, OUTPUT);//define a porta digital 9 como saída
+pinMode(10, OUTPUT);//define a porta digital 10 como saída
+}
+void loop(){
+analogWrite(3, 0);//a tensão na porta digital 3 será se 0V
+analogWrite(5, 64);//a tensão na porta digital 5 será se 1,25V
+analogWrite(6, 127);//a tensão na porta digital 6 será se 2,5V
+analogWrite(9, 191);//a tensão na porta digital 9 será se 3,75V
+analogWrite(10, 255);//a tensão na porta digital 10 será se 5V
+}

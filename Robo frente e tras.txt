@@ -1,0 +1,100 @@
+
+//MOTOR 1
+int pinMotor1 = 4 ; //pino 4 do arduino ligado na ponteh
+int pinMotor2 = 5 ; //pino 5 do arduino ligado na ponteh
+int velPWM_1 = 3 ; // pino pwm do arduino ligado na ponte h
+//MOTOR 2
+int pinMotor3 = 7 ; //pino 7 do arduino ligado na ponteh
+int pinMotor4 = 8 ; //pino 8 do arduino ligado na ponteh
+int velPWM_2 = 6 ; // pino pwm do arduino ligado na ponteh
+int const valorMAX = 70; // valor maximo do PWM
+const int echoPin = 11; // Pino para receber o eco do pulso
+const int trigPin = 12; // Pino para enviar o pulso do trigger
+float distancia = 0;
+
+
+
+int SONAR(){ 
+ digitalWrite(trigPin, LOW); // Seta trigger como baixo(0) por 2uS
+ delayMicroseconds(2);
+ digitalWrite(trigPin, HIGH); // coloca trigger em estado alto
+ delayMicroseconds(10); // por 10uS, pode uasr tbm delay (1) que equivale a 10uS
+ digitalWrite(trigPin, LOW); // coloca em estado baixo
+ distancia = pulseIn(echoPin, HIGH); //deixa eco em alto e retorna o tempo em milissegundos
+ distancia = distancia/58; // Calcula a distância do pelo tempo do pulso
+ Serial.println(distancia);
+ return distancia;
+}
+
+
+
+
+void moverParaFrente (){
+ //PWM para motor 1
+ analogWrite (velPWM_1, valorMAX) ; //255
+//PWM para motor 2
+ analogWrite (velPWM_2, valorMAX); //255
+ //Pinos Motor 1
+ digitalWrite (pinMotor1, HIGH); // (+)
+ digitalWrite (pinMotor2, LOW); // (-)
+ //Pinos Motor 2
+ digitalWrite (pinMotor3, HIGH); // (+)
+ digitalWrite (pinMotor4, LOW) ; // (-)
+}
+
+
+void moverParaTras (){
+ //PWM para motor 1
+ analogWrite (velPWM_1, valorMAX) ; //255
+//PWM para motor 2
+ analogWrite (velPWM_2, valorMAX); //255
+ //Pinos Motor 1
+ digitalWrite (pinMotor1, LOW); 
+ digitalWrite (pinMotor2, HIGH);
+ //Pinos Motor 2
+ digitalWrite (pinMotor3, LOW); 
+ digitalWrite (pinMotor4, HIGH) ;
+}
+
+
+
+void pararMotores (){
+ //PWM para motor 1
+ analogWrite (velPWM_1, valorMAX) ; //255
+//PWM para motor 2
+ analogWrite (velPWM_2, valorMAX); //255
+ //Pinos Motor 1
+ digitalWrite (pinMotor1, LOW); 
+ digitalWrite (pinMotor2, LOW);
+ //Pinos Motor 2
+ digitalWrite (pinMotor3, LOW); 
+ digitalWrite (pinMotor4, LOW) ;
+}
+
+
+void setup(){
+ Serial.begin(9600); //conexão usb, não utlize os pinos digitais 0 e 1 qndo conectado pela usb
+ pinMode(echoPin, INPUT);
+ pinMode(trigPin, OUTPUT);
+ pinMode(pinMotor1, OUTPUT);
+ pinMode(pinMotor2, OUTPUT);
+ pinMode(pinMotor3, OUTPUT);
+ pinMode(pinMotor4, OUTPUT);
+ pinMode(velPWM_1, OUTPUT);
+ pinMode(velPWM_2, OUTPUT);
+}
+
+  
+void loop() {
+ int d;
+ d=SONAR();
+ if (d>20){
+  moverParaFrente();
+  delay(300);
+  pararMotores();
+ }else{
+  moverParaTras();
+  delay(300);
+  pararMotores();
+ }
+}

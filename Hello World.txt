@@ -1,0 +1,10 @@
+
+
+
+void setup() {
+Serial.begin(9600); // inicializa porta serial. Serial Monitor do Arduino (Pesquisar!)
+} // Taxa de transmissão 9600 - BAUD RATE (SLIDE 8)
+void loop () {
+ Serial.println (“Hello World”);
+ delay(2000);
+}

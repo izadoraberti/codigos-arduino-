@@ -1,0 +1,47 @@
+
+
+
+int ledPin[] = {7, 8, 9, 10}, botaoPin = 11, botaoState = 0, i;
+void setup() {
+for(i = 0; i < 4; i++){
+pinMode(ledPin[i], OUTPUT);
+}
+pinMode(botaoPin, INPUT);
+}
+void loop(){
+botaoState = digitalRead(botaoPin);
+for(i = 0; i < 4; i++){
+digitalWrite(ledPin[i], HIGH);
+delay(1000);
+}
+for(i = 3; i >= 0; i--){
+digitalWrite(ledPin[i], LOW);
+botaoState = digitalRead(botaoPin);
+delay(300);
+}
+if(botaoState == HIGH){
+for(i=0;i<16;i++){
+if(i%2==1){
+digitalWrite(ledPin[0], HIGH);
+}else{
+digitalWrite(ledPin[0], LOW );
+}
+if(i%4>=2){
+digitalWrite(ledPin[1], HIGH);
+}else{
+digitalWrite(ledPin[1], LOW );
+}
+if(i%8>=4){
+digitalWrite(ledPin[2], HIGH);
+}else{
+digitalWrite(ledPin[2], LOW );
+}
+if(i%16>=8){
+digitalWrite(ledPin[3], HIGH);
+}else{
+digitalWrite(ledPin[3], LOW );
+}
+delay(1000);
+}
+}
+} 

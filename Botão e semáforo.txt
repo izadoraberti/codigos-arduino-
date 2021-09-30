@@ -1,0 +1,66 @@
+int carVermelho = 12;
+int carAmarelo = 11;
+int carVerde = 10;
+int pedVermelho = 9;
+int pedVerde = 8;
+int button = 2;
+int crossTime = 5000;
+unsigned long changeTime;
+void setup() {
+
+
+
+
+ pinMode(carVermelho, OUTPUT);
+ pinMode(carAmarelo, OUTPUT);
+ pinMode(carVerde, OUTPUT);
+ pinMode(pedVermelho, OUTPUT);
+ pinMode(pedVerde, OUTPUT);
+ pinMode(button, INPUT);
+ digitalWrite(carVerde, HIGH);
+ digitalWrite(pedVermelho, HIGH);
+}
+void loop() {
+ int state = digitalRead(button);
+ /* Verificar se o botão foi pressionado,
+ Verifica se ja passou 5 segundos desda última vez que foi pressionado
+o botão */
+ if (state == HIGH && (millis() - changeTime) > 5000) {
+ // chama a função changeLights
+ changeLights();
+ }
+}
+void changeLights() {
+ digitalWrite(carVerde, LOW);
+ digitalWrite(carAmarelo, HIGH);
+ delay(2000);
+
+ digitalWrite(carAmarelo, LOW);
+ digitalWrite(carVermelho, HIGH);
+ delay(1000);
+
+ digitalWrite(pedVermelho, LOW);
+ digitalWrite(pedVerde, HIGH);
+ delay(crossTime);
+
+ // flash the ped green
+ for (int x=0; x<10; x++) {
+ digitalWrite(pedVerde, HIGH);
+ delay(250);
+ digitalWrite(pedVerde, LOW);
+ delay(250);
+ }
+ // Liga led vermelho do pedestre
+ digitalWrite(pedVermelho, HIGH);
+ delay(500);
+
+ digitalWrite(carAmarelo, HIGH);
+ digitalWrite(carVermelho, LOW);
+ delay(1000);
+ digitalWrite(carVerde, HIGH);
+ digitalWrite(carAmarelo, LOW);
+
+ / / Registrar o tempo desde a última mudança de luzes
+ changeTime = millis();
+ // Depois volta para o loop principal do programa
+}

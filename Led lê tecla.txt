@@ -1,0 +1,24 @@
+
+
+
+int ledPin = 13;
+void setup() {
+ Serial.begin(9600); // inicializamos a porta serial onde vamos escrever os dados que serao lidos pela função
+Serial.read()
+ pinMode(ledPin, OUTPUT);
+}
+void loop()
+{
+ char tecla;
+ tecla = Serial.read(); // armazena em "tecla" o retorno da função read(), essa função lê um valor que é escrito na porta
+serial
+ if(tecla == 'l') //verfica se a tecla digitada é igual a l (liga)
+ {
+ digitalWrite(ledPin, HIGH);
+ }
+ else if(tecla == 'd') //verfica se a tecla digitada é igual a d (desliga)
+ {
+ digitalWrite(ledPin, LOW);
+ }
+delay(1000);
+}
